@@ -35,7 +35,7 @@ tone = st.selectbox(
         "Technical",
         "Friendly",
         "Casual",
-        "Marketing""
+        "Marketing"
     ]
 )
 generate = st.button(" Generate Content")
