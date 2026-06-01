@@ -1,35 +1,48 @@
 import streamlit as st
 import requests
 
-st.title("Ai Content Generator",
-st.write("Generate Blogs, LinkedIn Posts, Captions, Emails and more")
+BACKEND_URL = st.secrets["be_server_url"]
+
+st.set_page_config(
+    page_title="AI Content Generator",
+    layout="wide"
 )
+
+st.title("🚀 AI Content Generator")
+
+st.write("Generate Blogs, LinkedIn Posts, Captions, Emails and more")
+
 topic = st.text_input(
     "Enter Topic"
 )
-technology= st.selectbox(
-    "select technology",
+
+technology = st.selectbox(
+    "Select Technology",
     [
-        "python",
-        "sql",
-        "react",
-        "java script",
-        "node js",
+        "Python",
+        "React",
+        "MERN",
+        "NodeJS",
+        "FastAPI",
         "AI",
-        "GenAi"
+        "GenAI"
     ]
 )
-content_type =st.selectbox(
-    "content type",
+
+content_type = st.selectbox(
+    "Content Type",
     [
-        "instagram post",
-        "linkedin  caption",
-        "email"
-        "youtube description"
+        "LinkedIn Post",
+        "Blog",
+        "Instagram Caption",
+        "Twitter Post",
+        "Email",
+        "YouTube Description"
     ]
 )
+
 tone = st.selectbox(
-    "tone",
+    "Tone",
     [
         "Professional",
         "Technical",
@@ -38,24 +51,33 @@ tone = st.selectbox(
         "Marketing"
     ]
 )
-generate = st.button(" Generate Content")
+
+generate = st.button("Generate Content")
+
 if generate:
-    if topic =="":
-        st.warning("please enter topic")
+
+    if topic == "":
+        st.warning("Please enter topic")
     else:
-         with st.spinner("Generating Content..."):
-           response=requests.post(
-            f"{backend_url}/generate",
-            params{
-                "topic": topic,
+
+        with st.spinner("Generating Content..."):
+
+            response = requests.post(
+                f"{BACKEND_URL}/generate",
+                params={
+                    "topic": topic,
                     "technology": technology,
                     "content_type": content_type,
                     "tone": tone
-                 }
-           )
-           st.write("Status Code:", response.status_code)
+                }
+            )
+
+            # result = response.json()
+            st.write("Status Code:", response.status_code)
             st.write("Response Text:", response.json()["content"])
 
             st.success("Content Generated Successfully")
 
             st.subheader("Generated Content")
+
+           
