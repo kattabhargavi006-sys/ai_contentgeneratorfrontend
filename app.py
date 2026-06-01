@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-BACKEND_URL = st.secrets["be_server_url"]
+BACKEND_URL = st.secrets["be_server_url"].rstrip("/")
 
 st.set_page_config(
     page_title="AI Content Generator",
