@@ -62,15 +62,15 @@ if generate:
 
         with st.spinner("Generating Content..."):
 
-            response = requests.post(
-                f"{BACKEND_URL}/generate",
+         response=requests.post(
+             f"{BACKEND_URL}/generate",
                 params={
                     "topic": topic,
                     "technology": technology,
                     "content_type": content_type,
                     "tone": tone
                 }
-            )
+        )
 
             # result = response.json()
             st.write("Status Code:", response.status_code)
