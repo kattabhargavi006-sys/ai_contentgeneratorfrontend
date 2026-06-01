@@ -73,8 +73,14 @@ if generate:
                 }
             )
 
-             st.write("Status Code:", response.status_code)
+            st.write("Status Code:", response.status_code)
 
-             st.write("Response Text:", response.json()["content"])
+            result = response.json()
 
-             st.success("Content Generated Successfully")
+            st.write("Full Response:", result)
+
+            if "content" in result:
+                st.subheader("Generated Content")
+                st.write(result["content"])
+            else:
+                st.error("No content returned from backend")
